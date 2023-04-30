@@ -22,6 +22,7 @@ public:
     static int KaratsubaMultiply(const Integer, const Integer);
 
 protected:
+    bool positive;
     int* number;
     int size;
     int length;
