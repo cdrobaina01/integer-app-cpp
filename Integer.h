@@ -9,8 +9,9 @@ class Integer
 
 public:
     Integer();
-    Integer(const int);
+    Integer(int);
     Integer(const Integer&);
+    Integer(const Integer*);
     ~Integer();
 
     int Get() const;
@@ -22,12 +23,12 @@ public:
     static int KaratsubaMultiply(const Integer, const Integer);
 
 protected:
-    bool positive;
     int* number;
     int size;
-    int length;
 
     int (*multiply)(const Integer, const Integer);
+
+    int calculateDigits(int);
 };
 
 #endif // INTEGER_H
