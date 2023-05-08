@@ -63,17 +63,17 @@ void MainWindow::on_pshBtnMutiplicar_clicked()
 
 }
 
-
 int* MainWindow::convertirEntero(int n, int s)
 {
     int *integer = new int[s];
     int i = 0;
 
-    while (n > 0) {
+    while (n != 0) {
         integer[i] = n % 10;
         n /= 10;
         i++;
     }
+
     return integer;
 }
 
@@ -81,7 +81,7 @@ int MainWindow::seeSize(int n)
 {
     int i;
 
-    for (i = 0; n > 0; i++) {
+    for (i = 0; n != 0; i++) {
         n /= 10;
     }
 
