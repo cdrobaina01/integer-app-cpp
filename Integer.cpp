@@ -146,7 +146,7 @@ Integer operator-(const Integer &left, const Integer &right)
         if (i < right.size) {
             rest -= right.number[i];
         }
-        if (rest < 0) {
+        if (rest < 0 && (left.number[i] >= 0 && right.number[i] >= 0)) {
             borrow = -1;
             rest += 10;
         }
