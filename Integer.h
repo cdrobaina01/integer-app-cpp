@@ -3,13 +3,15 @@
 
 class Integer
 {
-    friend int operator+(const Integer, const Integer);
-    friend int operator-(const Integer, const Integer);
+    friend Integer operator+(const Integer&, const Integer&);
+    friend Integer operator-(const Integer&, const Integer&);
     friend int operator*(const Integer, const Integer);
 
 public:
     Integer();
     Integer(int);
+    //Integer(const int);
+    Integer(int [], int);
     Integer(const Integer&);
     Integer(const Integer*);
     ~Integer();

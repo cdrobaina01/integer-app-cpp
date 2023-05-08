@@ -1,4 +1,5 @@
 #include "Integer.h"
+#include <assert.h>
 
 int operator*(const Integer first, const Integer second)
 {
@@ -11,7 +12,7 @@ Integer::Integer() : number(new int[1]), size(1)
     number[0] = 0;
 }
 
-Integer::Integer(int integer)
+/*Integer::Integer(int integer)
 {
     int digits = this->calculateDigits(integer);
     number = new int[digits];
@@ -20,6 +21,30 @@ Integer::Integer(int integer)
     {
         number[i] = integer % 10;
         integer /= 10;
+    }
+}*/
+
+Integer::Integer(const int arraySize)
+{
+    size = arraySize;
+    number = new int[size];
+    assert(number != 0);
+
+    for (int i = 0; i < size; i++)
+        number[i] = 0;
+}
+
+/*Integer::Integer(const int array[])
+{
+    number = array[];
+}*/
+
+Integer::Integer(int array[],int sizeArray)
+{
+    size = sizeArray;
+    number = new int[size];
+    for (int i = 0; i < size; i++) {
+        number[i] = array[i];
     }
 }
 
@@ -45,7 +70,7 @@ Integer::Integer(const Integer* integer)
 
 Integer::~Integer()
 {
-    delete number;
+    delete []number;
 }
 
 int Integer::Get() const
@@ -63,6 +88,46 @@ int Integer::Get() const
 void Integer::Set(const int integer)
 {
 
+}
+
+Integer operator+(const Integer &left, const Integer &right)
+{
+    int maxSize;
+    left.size >= right.size ? maxSize = left.size : maxSize = right.size;
+    int *resultPtr = new int[maxSize];
+    int carry = 0;
+
+    for (int i = 0; i < maxSize; i++) {
+        int sum = carry;
+        if (i < left.size) {
+            sum += left.number[i];
+        }
+        if (i < right.size) {
+            sum += right.number[i];
+        }
+        resultPtr[i] = sum % 10;
+        carry = sum / 10;
+    }
+
+    //Redimencionando el arreglo para agregar el último dígito si es necesario
+    if (carry != 0) {
+        int *newResultPtr = new int[maxSize + 1];
+        for (int i = 0; i < maxSize; i++) {
+            newResultPtr[i] = resultPtr[i];
+        }
+        newResultPtr[maxSize] = carry;
+        delete[] resultPtr;
+        resultPtr = newResultPtr;
+        maxSize++;
+    }
+
+    Integer sum(maxSize);
+    for (int i = 0; i < maxSize; i++) {
+        sum.number[i] = resultPtr[i];
+    }
+
+    delete[] resultPtr;
+    return sum;
 }
 
 void Integer::SetMultiplyMethod(int (*method)(const Integer, const Integer))
