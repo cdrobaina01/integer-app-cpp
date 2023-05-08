@@ -58,8 +58,8 @@ void MainWindow::on_pshBtnMutiplicar_clicked()
     /*Integer num1(ui->tNum1->text());
     Integer num2(ui->tNum2->text());
     Integer num3(num1 * num2);
-    ui->lNumR->setText(QString::number(num3.Get()));
-    QMessageBox::information(this, "Comparación métodos de multiplicación", "Método Tradicional: %\nMétodo Karatsuba: %")*/;
+    ui->lNumR->setText(QString::number(num3.Get()));*/
+    QMessageBox::information(this, "Comparación métodos de multiplicación", "Método Tradicional: %\nMétodo Karatsuba: %");
 
 }
 
