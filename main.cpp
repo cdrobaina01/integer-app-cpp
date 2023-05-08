@@ -7,14 +7,16 @@ using namespace std;
 
 int main(int argc, char *argv[])
 {
-    /*QApplication a(argc, argv);
+    QApplication a(argc, argv);
+    a.setStyle("fusion");
     MainWindow w;
     w.show();
 
-    return a.exec();*/
+    return a.exec();
 
 
     //Prueba
+    /*
     int array1[4] = {4,3,9}; // 934
     int array2[2] = {7,6};   //  67
 
@@ -26,6 +28,6 @@ int main(int argc, char *argv[])
 
     cout << "La suma de los dos numeros es: " << num3.Get() << endl;
     cout << "La diferencia de los dos numeros es: " << num4.Get() << endl;
-
+    */
     return 0;
 }
