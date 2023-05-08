@@ -130,6 +130,47 @@ Integer operator+(const Integer &left, const Integer &right)
     return sum;
 }
 
+Integer operator-(const Integer &left, const Integer &right)
+{
+    int maxSize;
+    left.size >= right.size ? maxSize = left.size : maxSize = right.size;
+    int* resultPtr = new int[maxSize];
+    ;
+    int borrow = 0;
+
+    for (int i = 0; i < maxSize; i++) {
+        int rest = borrow;
+        if (i < left.size) {
+            rest += left.number[i];
+        }
+        if (i < right.size) {
+            rest -= right.number[i];
+        }
+        if (rest < 0) {
+            borrow = -1;
+            rest += 10;
+        }
+        else {
+            borrow = 0;
+        }
+        resultPtr[i] = rest;
+    }
+
+    //Eliminamos los ceros a la izquierda del resultado en caso de ser necesario
+    int pos = maxSize - 1;
+    while (pos > 0 && resultPtr[pos] == 0) {
+        pos--;
+    }
+
+    Integer diff(pos + 1);
+    for (int i = 0; i <= pos; i++) {
+        diff.number[i] = resultPtr[i];
+    }
+
+    delete[] resultPtr;
+    return diff;
+}
+
 void Integer::SetMultiplyMethod(int (*method)(const Integer, const Integer))
 {
     this->multiply = method;

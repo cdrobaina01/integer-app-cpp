@@ -17,13 +17,15 @@ int main(int argc, char *argv[])
     //Prueba
     int array1[4] = {4,3,9}; // 934
     int array2[2] = {7,6};   //  67
-                             //1001
+
     Integer num1(array1, sizeof(array1)/sizeof(int));
     Integer num2(array2, sizeof(array2)/sizeof(int));
 
-    Integer num3(num1+num2);
+    Integer num3(num1+num2); // Resultado esperado 1001
+    Integer num4(num1-num2); // Resultado esperado 867
 
-    cout << "La suma de los dos numeros es:" << num3.Get() << endl;
+    cout << "La suma de los dos numeros es: " << num3.Get() << endl;
+    cout << "La diferencia de los dos numeros es: " << num4.Get() << endl;
 
     return 0;
 }
