@@ -13,19 +13,18 @@ int main(int argc, char *argv[])
 
     return a.exec();*/
 
+    Integer num1(123);
+    Integer num2(32);
+    num1.SetMultiplyMethod(1);
+    num2.SetMultiplyMethod(1);
 
-    //Prueba
-    int array1[4] = {4,3,9}; // 934
-    int array2[2] = {7,6};   //  67
-
-    Integer num1(array1, sizeof(array1)/sizeof(int));
-    Integer num2(array2, sizeof(array2)/sizeof(int));
-
-    Integer num3(num1+num2); // Resultado esperado 1001
-    Integer num4(num1-num2); // Resultado esperado 867
+    Integer num3(num1+num2); // Resultado esperado 28
+    Integer num4(num1-num2); // Resultado esperado 20
+    int num5 = num1 * num2; // Resultado esparado 3936
 
     cout << "La suma de los dos numeros es: " << num3.Get() << endl;
     cout << "La diferencia de los dos numeros es: " << num4.Get() << endl;
+    cout << "La multiplicación de los 2 numero es: " << num5 << endl;
 
     return 0;
 }

@@ -9,28 +9,20 @@ class Integer
 
 public:
     Integer();
-    Integer(int);
-    //Integer(const int);
-    Integer(int [], int);
-    Integer(const Integer&);
-    Integer(const Integer*);
+    Integer(const int);
     ~Integer();
-
     int Get() const;
-    void Set(const int);
-
-    void SetMultiplyMethod(int (*)(const Integer, const Integer));
-
-    static int NormalMultiply(const Integer, const Integer);
-    static int KaratsubaMultiply(const Integer, const Integer);
+    void Set(int);
+    void SetMultiplyMethod(int = 0);
 
 protected:
     int* number;
     int size;
-
-    int (*multiply)(const Integer, const Integer);
-
     int calculateDigits(int);
+    Integer multiplyBy10n(int) const;
+    int (*multiply)(const Integer, const Integer);
+    static int NormalMultiply(const Integer, const Integer);
+    static int KaratsubaMultiply(const Integer, const Integer);
 };
 
 #endif // INTEGER_H
