@@ -19,47 +19,43 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_pshBtnSumar_clicked()
 {
-    int num;
-    int size;
-
-    num = ui->tNum1->text().toInt();
-    size = seeSize(num);
-    Integer num1(convertirEntero(num, size), size);
-
-    num = ui->tNum2->text().toInt();
-    size = seeSize(num);
-    Integer num2(convertirEntero(num, size), size);
-
-    Integer num3(num1 + num2);
-    ui->lNumR->setText(QString::number(num3.Get()));
+    Integer num1(ui->tNum1->text().toInt());
+    Integer num2(ui->tNum2->text().toInt());
+    ui->lNumR->setText(QString::number(num1 + num2));
 }
 
 void MainWindow::on_pshBtnRestar_clicked()
 {
-    int num;
-    int size;
-
-    num = ui->tNum1->text().toInt();
-    size = seeSize(num);
-    Integer num1(convertirEntero(num, size), size);
-
-    num = ui->tNum2->text().toInt();
-    size = seeSize(num);
-    Integer num2(convertirEntero(num, size), size);
-
-    Integer num3(num1 - num2);
-    ui->lNumR->setText(QString::number(num3.Get()));
+    Integer num1(ui->tNum1->text().toInt());
+    Integer num2(ui->tNum2->text().toInt());
+    ui->lNumR->setText(QString::number(num1 - num2));
 }
 
 
 void MainWindow::on_pshBtnMutiplicar_clicked()
 {
+    clock_t start;
+    clock_t end;
+    double elapsedTimeNormal;
+    double elapsedTimeKaratsuba;
 
-    /*Integer num1(ui->tNum1->text());
-    Integer num2(ui->tNum2->text());
-    Integer num3(num1 * num2);
-    ui->lNumR->setText(QString::number(num3.Get()));*/
-    QMessageBox::information(this, "Comparación métodos de multiplicación", "Método Tradicional: %\nMétodo Karatsuba: %");
+    Integer num1(ui->tNum1->text().toInt());
+    Integer num2(ui->tNum2->text().toInt());
+    Integer::SetMultiplyMethod(false);
+
+    start = clock();
+    int result = num1 * num2;
+    end = clock();
+    elapsedTimeNormal = double(end - start) / CLOCKS_PER_SEC;
+
+    ui->lNumR->setText(QString::number(result));
+    QString normal = "Método Tradicional: ";
+    normal += QString::number(result);
+    normal += "\n";
+    normal += "Tiempo Invertido: ";
+    normal += QString::number(elapsedTimeNormal);
+    QString message = normal;
+    QMessageBox::information(this, "Comparación métodos de multiplión", message);
 
 }
 

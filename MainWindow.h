@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 
+#include <ctime>
+
 namespace Ui {
 class MainWindow;
 }
