@@ -16,6 +16,7 @@ public:
     int Get() const;
     void Set(const int);
     static void SetMultiplyMethod(bool = false);
+    static Integer restar(const Integer&, const Integer&);
 
 protected:
     int* array;

@@ -1,8 +1,8 @@
 #include <QMessageBox>
+#include <iomanip>
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "Integer.h"
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,10 +34,10 @@ void MainWindow::on_pshBtnRestar_clicked()
 
 void MainWindow::on_pshBtnMutiplicar_clicked()
 {
-    clock_t start;
-    clock_t end;
+    clock_t start, end;
     double elapsedTimeNormal;
     double elapsedTimeKaratsuba;
+
 
     Integer num1(ui->tNum1->text().toInt());
     Integer num2(ui->tNum2->text().toInt());
@@ -46,7 +46,7 @@ void MainWindow::on_pshBtnMutiplicar_clicked()
     start = clock();
     int result = num1 * num2;
     end = clock();
-    elapsedTimeNormal = double(end - start) / CLOCKS_PER_SEC;
+    elapsedTimeNormal = ((double)(end - start) / CLOCKS_PER_SEC);
 
     ui->lNumR->setText(QString::number(result));
     QString normal = "Método Tradicional: ";
@@ -56,7 +56,6 @@ void MainWindow::on_pshBtnMutiplicar_clicked()
     normal += QString::number(elapsedTimeNormal);
     QString message = normal;
     QMessageBox::information(this, "Comparación métodos de multiplión", message);
-
 }
 
 int* MainWindow::convertirEntero(int n, int s)
