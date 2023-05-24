@@ -5,9 +5,9 @@
 
 class Integer
 {
-    friend int operator+(const Integer&, const Integer&);
-    friend int operator-(const Integer&, const Integer&);
-    friend int operator*(const Integer&, const Integer&);
+    friend Integer operator+(const Integer&, const Integer&);
+    friend Integer operator-(const Integer&, const Integer&);
+    friend Integer operator*(const Integer&, const Integer&);
 
 public:
     Integer();
@@ -22,9 +22,9 @@ protected:
     int size;
     int calculateDigits(int);
     Integer multiplyBy10n(int) const;
-    static int (*multiply)(const Integer, const Integer);
-    static int NormalMultiply(const Integer, const Integer);
-    static int KaratsubaMultiply(const Integer, const Integer);
+    static Integer (*multiply)(const Integer&, const Integer&);
+    static Integer NormalMultiply(const Integer&, const Integer&);
+    static Integer KaratsubaMultiply(const Integer&, const Integer&);
 };
 
 #endif // INTEGER_H
