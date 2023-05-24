@@ -45,19 +45,34 @@ void MainWindow::on_pshBtnMutiplicar_clicked()
     Integer num2(ui->tNum2->text().toInt());
 
     Integer::SetMultiplyMethod(false);
-    Integer result = num1 * num2;
 
     start = clock();
-    int result = num1 * num2;
+    // for(long i = 0; i < 10000000; i++);
+    Integer resultNormal = num1 * num2;
     end = clock();
     elapsedTimeNormal = ((double)(end - start) / CLOCKS_PER_SEC);
 
     QString normal = "Método Tradicional: ";
-    normal += QString::number(result.Get());
+    normal += QString::number(resultNormal.Get());
     normal += "\n";
     normal += "Tiempo Invertido: ";
     normal += QString::number(elapsedTimeNormal);
-    QString message = normal;
+
+    Integer::SetMultiplyMethod(true);
+
+    start = clock();
+    // for(long i = 0; i < 10000000; i++);
+    Integer resultKaratsuba = num1 * num2;
+    end = clock();
+    elapsedTimeKaratsuba = ((double)(end - start) / CLOCKS_PER_SEC);
+
+    QString karatsuba = "\nMétodo Karatsuba: ";
+    karatsuba += QString::number(resultKaratsuba.Get());
+    karatsuba += "\n";
+    karatsuba += "Tiempo Invertido: ";
+    karatsuba += QString::number(elapsedTimeKaratsuba);
+
+    QString message = normal + karatsuba;
     QMessageBox::information(this, "Comparación métodos de multiplión", message);
 }
 
