@@ -50,6 +50,12 @@ Integer operator+(const Integer &left, const Integer &right)
 
 Integer operator-(const Integer &left, const Integer &right)
 {
+    return right.size >= left.size && abs(right.array[right.size - 1]) >= abs(left.array[left.size - 1])
+            ? Integer::restar(right, left).Get() * -1 : Integer::restar(left, right).Get();
+}
+
+Integer Integer::restar(const Integer &left, const Integer &right)
+{
     int maxSize;
     left.size >= right.size ? maxSize = left.size : maxSize = right.size;
     int* resultPtr = new int[maxSize];
@@ -86,7 +92,6 @@ Integer operator-(const Integer &left, const Integer &right)
 
     return diff;
 }
-
 
 /* Builders, Getters & Setters */
 

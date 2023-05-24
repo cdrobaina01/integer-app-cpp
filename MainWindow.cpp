@@ -1,9 +1,8 @@
 #include <QMessageBox>
+#include <iomanip>
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "Integer.h"
-
-#include <iostream>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -37,28 +36,28 @@ void MainWindow::on_pshBtnRestar_clicked()
 
 void MainWindow::on_pshBtnMutiplicar_clicked()
 {
+    clock_t start, end;
+    double elapsedTimeNormal;
+    double elapsedTimeKaratsuba;
+
+
     Integer num1(ui->tNum1->text().toInt());
     Integer num2(ui->tNum2->text().toInt());
 
     Integer::SetMultiplyMethod(false);
     Integer result = num1 * num2;
 
-    ui->lNumR->setText(QString::number(result.Get()));
+    start = clock();
+    int result = num1 * num2;
+    end = clock();
+    elapsedTimeNormal = ((double)(end - start) / CLOCKS_PER_SEC);
 
     QString normal = "Método Tradicional: ";
     normal += QString::number(result.Get());
     normal += "\n";
-    normal += "Tiempo invertido: ";
-
-    Integer::SetMultiplyMethod(true);
-    result = num1 * num2;
-
-    QString karatsuba = "\nMétodo de Karatsuba: ";
-    karatsuba += QString::number(result.Get());
-    karatsuba += "\n";
-    karatsuba += "Tiempo invertido: ";
-
-    QString message = normal + karatsuba;
+    normal += "Tiempo Invertido: ";
+    normal += QString::number(elapsedTimeNormal);
+    QString message = normal;
     QMessageBox::information(this, "Comparación métodos de multiplión", message);
 }
 
